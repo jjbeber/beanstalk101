@@ -2,7 +2,7 @@ resource "aws_elastic_beanstalk_environment" "beanstalk101" {
   name                = "beanstalk101-web"
   description         = "Web server tyer"
   tier                = "WebServer"
-  application         = "${aws_elastic_beanstalk_application.acquisition.name}"
+  application         = "${aws_elastic_beanstalk_application.beanstalk101.name}"
   solution_stack_name = "64bit Amazon Linux 2017.03 v2.6.0 running Docker 1.12.6"
 
   setting {
