@@ -1,0 +1,26 @@
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+  services:
+    - docker
+
+dependencies:
+  override:
+    - pip install awscli awsebcli
+    - aws configure set default.region sa-east-1
+    - wget https://releases.hashicorp.com/terraform/0.9.11/terraform_0.9.11_linux_amd64.zip
+    - unzip terraform_0.9.11_linux_amd64.zip -d terraform/
+    - docker login -u $DOCKER_USER -p $DOCKER_PASS -e $DOCKER_EMAIL
+    - docker build --rm=false -t jonathanbeber/beanstalk101:$CIRCLE_SHA1 .
+
+test:
+  override:
+    - echo "I'm not testing anything here. Don't try this at home, Kids!"
+deployment:
+  prod:
+    branch: master
+    commands:
+      - cd terraform && ./terraform init && ./terraform apply
+      - docker push jonathanbeber/beanstalk101:$CIRCLE_SHA1
+      - cd elasticbeanstalk;
+        bash deploy.sh production sa-east-1

@@ -1,2 +1,2 @@
 # beanstalk101
-Elastic Beanstalk simple example
+Elastic Beanstalk example with terraform.

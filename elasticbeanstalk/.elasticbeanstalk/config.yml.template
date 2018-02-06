@@ -1,0 +1,13 @@
+branch-defaults:
+  default:
+    environment: WEB-ENVIRONMENT
+global:
+  application_name: beanstalk101
+    64bit Amazon Linux/2.6.0
+  default_region: REGION 
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  sc: null
+  workspace_type: Application
