@@ -20,7 +20,7 @@ deployment:
   prod:
     branch: master
     commands:
-      - cd terraform && ./terraform init && ./terraform apply -auto-approve
+      - cd terraform && ./terraform init && ./terraform apply
       - docker push jonathanbeber/beanstalk101:$CIRCLE_SHA1
       - cd elasticbeanstalk;
         bash deploy.sh production sa-east-1
